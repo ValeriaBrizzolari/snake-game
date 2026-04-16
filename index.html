@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="game-container">
+      <h1>Snake Game</h1>
+      <div class="score-board">
+        <p>Score: <span id="score">0</span></p>
+      </div>
+      <div class="game-board" id="gameBoard"><div class="snake"></div></div>
+      <div class="start-screen" id="startScreen">
+        <h2 id="title">
+          Use the arrow keys on your keyboard to control the snake
+        </h2>
+        <button id="startButton">Start Game</button>
+      </div>
+    </main>
+
+    <script src="js/script.js" defer></script>
+  </body>
+</html>
