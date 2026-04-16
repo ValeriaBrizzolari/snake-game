@@ -8,8 +8,12 @@ const startScreen = document.getElementById("startScreen");
 const startButton = document.getElementById("startButton");
 const title = document.querySelector("#title");
 let score = 0;
+const eatSound = new Audio("./assets/sounds/beep.wav");
+const fail = new Audio("./assets/sounds/fail.wav");
 
 startButton.addEventListener("click", function () {
+  fail.pause();
+  fail.currentTime = 0;
   resetGame();
   startScreen.style.display = "none";
   gameInterval = setInterval(gameLoop, 200);
@@ -64,20 +68,20 @@ function moveSnake() {
     head.y++;
   }
   if (head.x < 1 || head.x > 20 || head.y < 1 || head.y > 20) {
-    //check wall collision
+    fail.play();
     gameOver();
     return;
   }
   for (let i = 0; i < snake.length; i++) {
-    //check self collision
     if (head.x === snake[i].x && head.y === snake[i].y) {
+      fail.play();
       gameOver();
       return;
     }
   }
 
   if (head.x === food.x && head.y === food.y) {
-    // check if food is eaten
+    eatSound.play();
     foodSpawning();
     score++;
     scoreDisplay.textContent = score;

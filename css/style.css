@@ -66,7 +66,7 @@ h1 {
 .snake-head {
   background: linear-gradient(145deg, #b6ff5c, #4cff00);
   border: 1px solid #d8ffb0;
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow:
     0 0 10px rgba(127, 255, 0, 0.8),
     inset 0 0 5px rgba(255, 255, 255, 0.5);
