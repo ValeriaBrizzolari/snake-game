@@ -3,6 +3,7 @@ const food = { x: 15, y: 10 };
 const gameBoard = document.getElementById("gameBoard");
 let direction = "right";
 let gameInterval;
+let gameSpeed = 200;
 const scoreDisplay = document.getElementById("score");
 const startScreen = document.getElementById("startScreen");
 const startButton = document.getElementById("startButton");
@@ -14,18 +15,33 @@ const fail = new Audio("./assets/sounds/fail.wav");
 startButton.addEventListener("click", function () {
   fail.pause();
   fail.currentTime = 0;
+
   resetGame();
   startScreen.style.display = "none";
-  gameInterval = setInterval(gameLoop, 200);
+
+  startGameLoop();
 });
+
+function startGameLoop() {
+  clearInterval(gameInterval);
+  gameInterval = setInterval(gameLoop, gameSpeed);
+}
+
 function resetGame() {
   clearInterval(gameInterval);
   snake = [{ x: 10, y: 10 }];
   direction = "right";
   score = 0;
+  gameSpeed = 200;
   scoreDisplay.textContent = score;
   foodSpawning();
   drawGame();
+}
+function increaseSpeed() {
+  if (score % 3 === 0 && gameSpeed > 80) {
+    gameSpeed -= 20;
+    startGameLoop();
+  }
 }
 function gameOver() {
   clearInterval(gameInterval);
@@ -85,6 +101,7 @@ function moveSnake() {
     foodSpawning();
     score++;
     scoreDisplay.textContent = score;
+    increaseSpeed();
   } else {
     snake.pop();
   }
