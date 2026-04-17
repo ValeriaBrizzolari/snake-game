@@ -13,6 +13,7 @@
   <body>
     <main class="game-container">
       <h1>Snake Game</h1>
+
       <div class="score-board">
         <p>Score: <span id="score">0</span></p>
       </div>
@@ -22,9 +23,18 @@
 
         <div class="start-screen" id="startScreen">
           <h2 id="title">
-            Use the arrow keys on your keyboard to control the snake
+            Use your keyboard or the on-screen controls to move the snake
           </h2>
           <button id="startButton">Start Game</button>
+        </div>
+      </div>
+
+      <div class="mobile-controls">
+        <div class="controls-grid">
+          <button class="control-btn up"><span>▲</span></button>
+          <button class="control-btn left"><span>◀</span></button>
+          <button class="control-btn down"><span>▼</span></button>
+          <button class="control-btn right"><span>▶</span></button>
         </div>
       </div>
     </main>

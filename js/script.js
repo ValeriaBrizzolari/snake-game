@@ -8,6 +8,10 @@ const scoreDisplay = document.getElementById("score");
 const startScreen = document.getElementById("startScreen");
 const startButton = document.getElementById("startButton");
 const title = document.querySelector("#title");
+const upButton = document.querySelector(".up");
+const downButton = document.querySelector(".down");
+const leftButton = document.querySelector(".left");
+const rightButton = document.querySelector(".right");
 let score = 0;
 const eatSound = new Audio("./assets/sounds/beep.wav");
 const fail = new Audio("./assets/sounds/fail.wav");
@@ -131,22 +135,41 @@ function gameLoop() {
 }
 
 document.addEventListener("keydown", function (event) {
-  let keyDirection = event.key;
-  if (keyDirection === "ArrowRight") {
-    if (direction !== "left") {
-      direction = "right";
-    }
-  } else if (keyDirection === "ArrowLeft") {
-    if (direction !== "right") {
-      direction = "left";
-    }
-  } else if (keyDirection === "ArrowUp") {
-    if (direction !== "down") {
-      direction = "up";
-    }
-  } else if (keyDirection === "ArrowDown") {
-    if (direction !== "up") {
-      direction = "down";
-    }
+  if (event.key === "ArrowRight") {
+    changeDirection("right");
+  } else if (event.key === "ArrowLeft") {
+    changeDirection("left");
+  } else if (event.key === "ArrowUp") {
+    changeDirection("up");
+  } else if (event.key === "ArrowDown") {
+    changeDirection("down");
   }
+});
+
+function changeDirection(newDirection) {
+  if (newDirection === "right" && direction !== "left") {
+    direction = "right";
+  } else if (newDirection === "left" && direction !== "right") {
+    direction = "left";
+  } else if (newDirection === "up" && direction !== "down") {
+    direction = "up";
+  } else if (newDirection === "down" && direction !== "up") {
+    direction = "down";
+  }
+}
+
+upButton.addEventListener("click", function () {
+  changeDirection("up");
+});
+
+downButton.addEventListener("click", function () {
+  changeDirection("down");
+});
+
+leftButton.addEventListener("click", function () {
+  changeDirection("left");
+});
+
+rightButton.addEventListener("click", function () {
+  changeDirection("right");
 });

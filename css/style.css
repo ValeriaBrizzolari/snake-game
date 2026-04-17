@@ -11,7 +11,8 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
 }
 
 .game-container {
@@ -52,8 +53,8 @@ h1 {
 }
 .board-wrapper {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: min(500px, 90vw);
+  aspect-ratio: 1 / 1;
 }
 .snake {
   background: linear-gradient(145deg, #7fff00, #32cd32);
@@ -111,4 +112,89 @@ h1 {
 .start-screen button:active {
   transform: translateY(4px);
   box-shadow: none;
+}
+.mobile-controls {
+  display: none;
+  margin: 1.5rem auto 2rem;
+  width: fit-content;
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  grid-template-areas:
+    ". up ."
+    "left down right";
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.control-btn {
+  width: 72px;
+  height: 72px;
+  border: 2px solid #39ff14;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #39ff14, #1dbb00);
+  color: #071b00;
+  font-size: 1.6rem;
+  font-family: "Press Start 2P", cursive;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow:
+    0 0 8px #39ff14,
+    0 0 18px rgba(57, 255, 20, 0.6),
+    inset 0 2px 8px rgba(255, 255, 255, 0.25),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+  box-shadow:
+    0 0 6px #39ff14,
+    0 0 14px rgba(57, 255, 20, 0.5),
+    inset 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+.control-btn span {
+  line-height: 1;
+  transform: translateY(-2px);
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 0.3),
+    0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.up {
+  grid-area: up;
+}
+
+.left {
+  grid-area: left;
+}
+
+.down {
+  grid-area: down;
+}
+
+.right {
+  grid-area: right;
+}
+
+@media (max-width: 768px) {
+  .mobile-controls {
+    display: block;
+  }
+  .controls-grid {
+    grid-template-columns: repeat(3, 64px);
+  }
+
+  .control-btn {
+    width: 64px;
+    height: 64px;
+  }
 }
